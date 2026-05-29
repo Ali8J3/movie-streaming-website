@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Seenema</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./Css/index.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">SEENEMA</div>
+
+  <div class="menu">
+    <div class="menu-item" onclick="toggleMenu(this)">
+      فیلم
+      <div class="dropdown">
+        <a href="category.html?cat=action">اکشن</a>
+        <a href="category.html?cat=comedy">کمدی</a>
+        <a href="category.html?cat=scary">ترسناک</a>
+        <a href="category.html?cat=criminal">جنایی</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="header-icons">
+    <i class="bi bi-search" id="searchIcon"></i>
+    <i class="bi bi-person-fill" id="userIcon" ></i>
+
+<div id="overlay" class="overlay">
+  <div class="login-modal">
+    <span class="close">&times;</span>
+
+<div id="stepPhone">
+  <img src="logo.jpg" class="logo">
+
+  <p class="desc">برای ارسال کد ورود، شماره موبایل خود را وارد کنید</p>
+
+  <input type="tel" id="phoneInput" placeholder="مثلاً 09123456789">
+
+  <button class="submit-btn" id="sendCodeBtn">
+    دریافت کد ورود
+  </button>
+</div>
+
+<div id="stepOtp" style="display:none">
+  <img src="logo.jpg" class="logo">
+
+  <p class="desc">کد ارسال‌شده را وارد کنید</p>
+
+  <input type="text" id="otpInput" placeholder="کد یکبار مصرف">
+  <p id="timerText" class="timer">
+    ارسال مجدد کد تا <span id="timer">60</span> ثانیه
+  </p>
+  
+  <button class="resend-btn" id="resendBtn" disabled>
+    ارسال مجدد کد
+  </button>
+
+  <button class="submit-btn">
+    ورود
+  </button>
+
+  <div class="back" id="backToPhone">ویرایش شماره</div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- MOVIES -->
+<div class="movies" id="moviesGrid"></div>
+
+<!-- SEARCH -->
+<div class="search-box" id="searchBox">
+  <input type="text" id="searchInput" placeholder="جستجو..." />
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="Js/menu.js"></script>
+<script src="Js/style.js"></script>
+<script src="Js/timer.js"></script>
+
+</body>
+</html>

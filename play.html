@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Seenema | Play</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="Css/play.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo" onclick="location.href='index.html'">SEENEMA</div>
+</div>
+
+<!-- PLAYER -->
+<div class="player">
+  <!-- فعلاً ویدیو نمونه -->
+  <video id="videoPlayer" controls poster="">
+    <source src="" type="video/mp4">
+    مرورگر شما ویدیو را پشتیبانی نمی‌کند
+  </video>
+</div>
+
+<!-- INFO -->
+<div class="info" id="infoBox" style="display:none">
+  <div class="poster" id="posterBox"></div>
+
+  <div class="details">
+    <h1 id="title"></h1>
+
+    <div class="meta" id="meta"></div>
+
+    <div class="desc" id="desc"></div>
+
+    <div class="actions">
+      <button id="playBtn" class="btn"><i class="bi bi-collection-play"></i> پخش</button>
+      
+      <button class="btn secondary"><i class="bi bi-bookmark-plus"></i> لیست تماشا</button>
+    </div>
+  </div>
+</div>
+
+<div class="not-found" id="notFound" style="display:none">
+  فیلم مورد نظر یافت نشد 😕
+</div>
+
+<script src="Js/data.js"></script>
+<script src="Js/searchLink.js"></script>
+
+</body>
+</html>
