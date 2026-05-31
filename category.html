@@ -4,73 +4,7 @@
 <meta charset="UTF-8">
 <title>Seenema | Category</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body{
-  margin:0;
-  font-family:tahoma;
-  background:#111;
-  color:#fff;
-}
-
-/* HEADER */
-.header{
-  padding:15px 25px;
-  background:#0b0b0b;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.logo{
-  font-size:24px;
-  font-weight:bold;
-  color:#e50914;
-  cursor:pointer;
-}
-
-/* TITLE */
-.page-title{
-  padding:20px 30px 0;
-  font-size:20px;
-  font-weight:bold;
-}
-
-/* GRID */
-.movies{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:20px;
-  padding:30px;
-}
-
-.movie{
-  height:260px;
-  background-size:cover;
-  background-position:center;
-  border-radius:15px;
-  cursor:pointer;
-  display:flex;
-  align-items:flex-end;
-  padding:12px;
-  position:relative;
-}
-
-.movie::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
-  border-radius:15px;
-}
-
-.movie span{
-  position:relative;
-  z-index:2;
-  font-weight:bold;
-  font-size:14px;
-}
-</style>
+<link rel="stylesheet" href="Css/category.css">
 </head>
 
 <body>
@@ -85,43 +19,8 @@ body{
 <!-- MOVIES -->
 <div class="movies" id="moviesGrid"></div>
 <div class="movies" id="newMovies"></div>
-<script src="data.js"></script>
-<script>
-// GET CATEGORY
-const params = new URLSearchParams(location.search);
-const cat = params.get("cat");
-
-// TITLE
-const titles = {
-  action: "اکشن",
-  comedy: "کمدی",
-  fantasy: "فانتزی",
-  animation: "انیمیشن",
-  horror: "ترسناک",
-  drama: "درام"
-};
-
-document.getElementById("pageTitle").innerText =
-  titles[cat] ? "دسته‌بندی: " + titles[cat] : "فیلم‌ها";
-
-// RENDER
-const grid = document.getElementById("moviesGrid");
-
-const list = DATA.movies.filter(m => m.category === cat);
-
-if(list.length === 0){
-  grid.innerHTML = "<p>موردی یافت نشد</p>";
-}
-
-list.forEach(m=>{
-  const div = document.createElement("div");
-  div.className = "movie";
-  div.style.backgroundImage = `url(${m.poster})`;
-  div.innerHTML = `<span>${m.title}</span>`;
-  div.onclick = ()=>location.href = "play.html?id=" + m.id;
-  grid.appendChild(div);
-});
-</script>
+<script src="Js/data.js"></script>
+<script src="Js/category.js"></script>
 
 </body>
 </html>

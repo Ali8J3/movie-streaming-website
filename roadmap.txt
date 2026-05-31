@@ -1,0 +1,43 @@
+🍫"KEEP IT SIMPLE, KEEP IT CLEAN"🍫
+
+➖ Model:
+    https://www.behnegar.top/
+
+➖ Structure:
+
+    🍉Core Pages🍉
+    [ ] Home
+    [ ] Movie Details
+    [ ] Player
+    [ ] Search
+    [ ] Profile
+    [ ] Favorites
+    [ ] Sign In
+    
+    🍉Homepage🍉
+    [ ] New Header
+    [ ] Hero Slider
+    [ ] New Movies Row
+    [ ] New Series Row
+    [ ] Anime Row
+    [ ] Coming Soon Row
+    [ ] Footer
+    
+    🍉Movie Page🍉
+    [ ] Cover Banner
+    [ ] Description
+    [ ] Rating
+    [ ] Genres
+    [ ] Trailer
+    [ ] Download Buttons
+    [ ] Similar Movies
+    [ ] Comments
+    
+    🍉Player🍉
+    [ ] Video
+    [ ] Quality Buttons
+    [ ] Continue Watching
+    
+    🍉Extra🍉
+    [ ] Dark/Light Theme
+    [ ] Responsive Design

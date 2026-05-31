@@ -1,0 +1,217 @@
+.main-header{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+
+    height:80px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 40px;
+
+    /* background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,.9),
+        rgba(0,0,0,.55)
+    ); */
+
+    backdrop-filter:blur(18px);
+
+    z-index:9999;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:50px;
+
+    min-width: 0;
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+
+    font-size:30px;
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    white-space:nowrap;
+    flex-shrink:1;
+}
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+
+    color:#bdbdbd;
+
+    font-size:15px;
+    font-weight:500;
+
+    transition:.25s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active{
+    color:#fff;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    flex-shrink: 0;
+}
+
+.header-btn{
+    width:46px;
+    height:46px;
+
+    border:none;
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.header-btn:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.header-btn i{
+    font-size:18px;
+}
+
+.login-btn{
+    height:46px;
+
+    border:none;
+
+    padding:0 18px;
+
+    border-radius:14px;
+
+    background:#e50914;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+.login-btn i{
+    font-size:18px;
+}
+
+/* Tablet */
+
+@media (max-width: 992px){
+
+    .main-header{
+        padding:0 20px;
+    }
+
+    .logo{
+        font-size:24px;
+        letter-spacing:2px;
+    }
+
+    .nav-menu{
+        gap:18px;
+    }
+
+    .nav-menu a{
+        font-size:14px;
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px){
+
+    .main-header{
+        height:70px;
+        padding:0 12px;
+    }
+
+    .nav-menu{
+        display:none;
+    }
+
+    .logo{
+        font-size:20px;
+        letter-spacing:1px;
+    }
+
+    .header-left{
+        gap:8px;
+    }
+
+    .header-btn{
+        width:40px;
+        height:40px;
+    }
+
+    .login-btn{
+        width:40px;
+        height:40px;
+
+        padding:0;
+
+        justify-content:center;
+    }
+
+    .login-btn span{
+        display:none;
+    }
+
+}
+
+/* Smaller Moblie Screens */
+
+@media (max-width: 420px){
+
+    .logo{
+        font-size:17px;
+    }
+
+    .header-btn{
+        width:36px;
+        height:36px;
+    }
+
+    .header-btn i,
+    .login-btn i{
+        font-size:16px;
+    }
+
+}

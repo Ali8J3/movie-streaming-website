@@ -9,7 +9,8 @@ const DATA = {
         genre: "انیمیشن / کمدی",
         year: "2016",
         rate: "8.0",
-        category: "comedy"
+        category: "comedy",
+        featured: true
       },
       {
         id: 2,
@@ -20,7 +21,8 @@ const DATA = {
         genre: "اکشن",
         year: "2024",
         rate: "8.1",
-        category: "action"
+        category: "action",
+        featured: true
       },
       {
         id: 3,
@@ -31,7 +33,8 @@ const DATA = {
         genre: "فانتزی",
         year: "2023",
         rate: "7",
-        category: "fantasy"
+        category: "fantasy",
+        featured: true
       },
       {
         id: 4,
@@ -42,7 +45,8 @@ const DATA = {
         genre: "Reality / Action",
         year: "2020",
         rate: "7.9",
-        category: "action"
+        category: "action",
+        featured: true
       },
       {
         id: 5,
@@ -53,7 +57,8 @@ const DATA = {
         genre: "Thriller",
         year: "2024",
         rate: "7.6",
-        category: "thriller"
+        category: "thriller",
+        featured: false
       },
       {
         id: 7,
@@ -64,8 +69,8 @@ const DATA = {
         genre: "Reality / Action",
         year: "2025",
         rate: "6.7",
-        category: "action"
-
+        category: "action",
+        featured: false
       }
     ]
   };
@@ -82,7 +87,7 @@ const DATA = {
         rate: "7.6",
         category: "criminal"
 
-      },
+      ,featured: false},
       {
         id: 8,
         title: "Detective Kien: The Headless Horror",
@@ -94,7 +99,7 @@ const DATA = {
         rate: "7",
         category: "scary"
 
-      },
+      ,featured: false},
     
       {
         id: 9,
