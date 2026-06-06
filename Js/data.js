@@ -1,5 +1,5 @@
-const DATA = {
-    movies: [
+// <<< MOVIES >>>
+const DATA = [
       {
         id: 1,
         title: "Zootopia",
@@ -10,7 +10,8 @@ const DATA = {
         year: "2016",
         rate: "8.0",
         category: "comedy",
-        featured: true
+        featured: true,
+        type: "movie",
       },
       {
         id: 2,
@@ -22,7 +23,8 @@ const DATA = {
         year: "2024",
         rate: "8.1",
         category: "action",
-        featured: true
+        featured: true,
+        type: "movie",
       },
       {
         id: 3,
@@ -34,7 +36,8 @@ const DATA = {
         year: "2023",
         rate: "7",
         category: "fantasy",
-        featured: true
+        featured: true,
+        type: "movie",
       },
       {
         id: 4,
@@ -46,7 +49,8 @@ const DATA = {
         year: "2020",
         rate: "7.9",
         category: "action",
-        featured: true
+        featured: true,
+        type: "movie",
       },
       {
         id: 5,
@@ -58,7 +62,8 @@ const DATA = {
         year: "2024",
         rate: "7.6",
         category: "thriller",
-        featured: false
+        featured: false,
+        type: "movie",
       },
       {
         id: 7,
@@ -70,12 +75,13 @@ const DATA = {
         year: "2025",
         rate: "6.7",
         category: "action",
-        featured: false
+        featured: false,
+        type: "movie",
       }
-    ]
-  };
-  const NEW_MOVIES = {
-    movies: [
+    ];
+  
+    // <<< NEW_MOVIES >>>
+const NEW_MOVIES = [
       {
         id: 6,
         title: "The Price of Confession",
@@ -85,9 +91,10 @@ const DATA = {
         genre: "Thriller",
         year: "2024",
         rate: "7.6",
-        category: "criminal"
-
-      ,featured: false},
+        category: "criminal",
+       featured: false,
+        type: "movie",
+    },
       {
         id: 8,
         title: "Detective Kien: The Headless Horror",
@@ -97,10 +104,53 @@ const DATA = {
         genre: "ترسناک",
         year: "2025",
         rate: "7",
-        category: "scary"
+        category: "scary",
+       featured: false,
+        type: "movie",
+    },
+      {
+        id: 9,
+        title: "Five Nights at Freddy's 2",
+        desc:"یک سال پس از کابوس فراطبیعی نخست در رستوران Freddy Fazbear's Pizza شهر تبدیل به محلی برای جشن فزفست شده الهام گرفته از داستانهای محلی درباره ترس و افسانه مایک نگهبان پیشین و ونسا مأمور پلیس تلاش دارند حقیقت را از خواهر یازده ساله مایک آبی که هنوز با انیماترونیکهای ترسناک آن رستوران ارتباط دارد. پنهان کنند",
+        poster: "f.jpg",
+        rate: "5.5",
+        video:"f.mp4",
+        genre: "ترسناک",
+        year: "2025",
+        category: "scary",
+        featured: false,
+        type: "movie",
+      }
+    ];
 
-      ,featured: false},
-    
+    // <<< SERIES >>>
+const Series = [
+      {
+        id: 6,
+        title: "The Price of Confession",
+        desc: "در سریال بهای اعتراف آن یون سو معلم هنر ناگهان شوکه میشود وقتی شوهرش به قتل میرسد و او متهم اصلی این جنایت میگردد. زندگی اش وارونه میشود زندگی آرام اعتماد و امنیت خانوادگی اش با شک و اتهام جایگزین میشود ولی وقتی در زندان با مو آن زنی مرموز با اسراری تاریک دیدار میکند تلاشی خطرناک و پیچیده برای اثبات بی گناهی اش آغاز میگردد. او باید بین حقیقت و قربانی شدن یکی را انتخاب کند تصمیمی که نه فقط سرنوشت خودش بلکه عدالت حقیقت و زندگی کسانی که دوست دارد را رقم خواهد زد. ",
+        poster: "ba.jpg",
+        video:"ba.mp4",
+        genre: "Thriller",
+        year: "2024",
+        rate: "7.6",
+        category: "criminal",
+        featured: false,
+        type: "Series",
+    },
+      {
+        id: 8,
+        title: "Detective Kien: The Headless Horror",
+        desc: "تریلری رازآلود",
+        poster: "kar.jpg",
+        video:"kar.mp4",
+        genre: "ترسناک",
+        year: "2025",
+        rate: "7",
+        category: "scary",
+        featured: false,
+        type: "Series",
+    },
       {
         id: 9,
         title: "Five Nights at Freddy's 2",
@@ -112,7 +162,52 @@ const DATA = {
         year: "2025",
         rate: "5.5",
         category: "scary",
-        playUrl: "https://www.aparat.com/v/kpz2p4m", // لینک تیزر یا پخش
+        featured: false,
+        type: "Series",
       }
-    ]
-  };
+    ];
+  
+    // <<< SERIES >>>
+const Anime = [
+      {
+        id: 6,
+        title: "The Price of Confession",
+        desc: "در سریال بهای اعتراف آن یون سو معلم هنر ناگهان شوکه میشود وقتی شوهرش به قتل میرسد و او متهم اصلی این جنایت میگردد. زندگی اش وارونه میشود زندگی آرام اعتماد و امنیت خانوادگی اش با شک و اتهام جایگزین میشود ولی وقتی در زندان با مو آن زنی مرموز با اسراری تاریک دیدار میکند تلاشی خطرناک و پیچیده برای اثبات بی گناهی اش آغاز میگردد. او باید بین حقیقت و قربانی شدن یکی را انتخاب کند تصمیمی که نه فقط سرنوشت خودش بلکه عدالت حقیقت و زندگی کسانی که دوست دارد را رقم خواهد زد. ",
+        poster: "ba.jpg",
+        video:"ba.mp4",
+        genre: "Thriller",
+        year: "2024",
+        rate: "7.6",
+        category: "criminal",
+        featured: false,
+        type: "Series",
+    },
+      {
+        id: 8,
+        title: "Detective Kien: The Headless Horror",
+        desc: "تریلری رازآلود",
+        poster: "kar.jpg",
+        video:"kar.mp4",
+        genre: "ترسناک",
+        year: "2025",
+        rate: "7",
+        category: "scary",
+        featured: false,
+        type: "Series",
+    },
+      {
+        id: 9,
+        title: "Five Nights at Freddy's 2",
+        desc:"یک سال پس از کابوس فراطبیعی نخست در رستوران Freddy Fazbear's Pizza شهر تبدیل به محلی برای جشن فزفست شده الهام گرفته از داستانهای محلی درباره ترس و افسانه مایک نگهبان پیشین و ونسا مأمور پلیس تلاش دارند حقیقت را از خواهر یازده ساله مایک آبی که هنوز با انیماترونیکهای ترسناک آن رستوران ارتباط دارد. پنهان کنند",
+        poster: "f.jpg",
+        rate: "5.5",
+        video:"f.mp4",
+        genre: "ترسناک",
+        year: "2025",
+        rate: "5.5",
+        category: "scary",
+        featured: false,
+        type: "Series",
+      }
+    ];
+  

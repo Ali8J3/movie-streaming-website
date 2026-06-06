@@ -1,6 +1,7 @@
 const allMovies = [
-    ...DATA.movies,
-    ...NEW_MOVIES.movies
+    ...DATA,
+    ...NEW_MOVIES,
+    ...Series
 ];
 
 const featuredMovies = allMovies.filter(
