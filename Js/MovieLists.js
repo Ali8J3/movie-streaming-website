@@ -26,7 +26,7 @@ function renderSlider(containerId, movies)
 
         card.onclick = () =>
             location.href =
-                `play.html?id=${movie.id}`;
+                `components/play.html?id=${movie.id}`;
 
         container.appendChild(card);
 
