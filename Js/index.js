@@ -1,16 +1,7 @@
+renderSlider("newMoviesSlider", DATA);
+renderSlider("newSeriesSlider", Series);
+renderSlider("newAnimeSlider", Anime);
 
-    // init
-renderSlider(
-    "newMoviesSlider",
-    NEW_MOVIES
-);
-
-renderSlider(
-    "newSeriesSlider",
-    Series
-);
-
-renderSlider(
-    "newAnimeSlider",
-    Anime
-);
+createSplide("newMoviesSplide");
+createSplide("newSeriesSplide");
+createSplide("newAnimeSplide");

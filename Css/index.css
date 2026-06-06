@@ -153,6 +153,8 @@ input::placeholder {
     position:relative;
 
     overflow:hidden;
+
+    transition:.3s;
 }
 
 .featured-overlay{
@@ -160,24 +162,15 @@ input::placeholder {
     inset:0;
 
     display:flex;
-    justify-content:center;
     align-items:center;
 
-    opacity:0;
-
-    transition:.3s;
-
-    pointer-events:none;
-}
-
-.featured-poster:hover .featured-overlay{
-    opacity:1;
+    margin-right: 10rem;
 }
 
 #featuredPlayBtn{
 
-    width:90px;
-    height:90px;
+    width:80px;
+    height:80px;
 
     display:flex;
     justify-content:center;
@@ -186,7 +179,7 @@ input::placeholder {
     border:none;
     border-radius:50%;
 
-    background:#e50914;
+    background: white;
 
     color:white;
 
@@ -194,20 +187,11 @@ input::placeholder {
 
     pointer-events:auto;
 
-    transition:.25s;
+    opacity: 0.16;
 }
 
-#featuredPlayBtn i{
-
-    font-size:42px;
-
-    line-height:1;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    margin-right:-4px;
+#featuredPlayButton{
+  margin-right: -3.5rem;
 }
 
 .featured-item{
@@ -230,14 +214,14 @@ input::placeholder {
 .featured-content{
     position:absolute;
     bottom:25px;
-    right:25px;
+    /* right:25px; */
     left:25px;
     z-index:3;
 }
 
 #featuredTitle{
-  text-align: left;
-    margin:0 0 20px;
+    text-align: left;
+    margin: 8rem 0 20px 2rem;
     font-size:2rem;
     font-weight:700;
     text-shadow:0 4px 20px rgba(0,0,0,.8);
@@ -275,7 +259,7 @@ input::placeholder {
 
 .featured-item.active{
 
-    border:3px solid #e50914;
+    border:3px solid white;
 
     transform:translateY(-6px);
 
@@ -294,7 +278,7 @@ input::placeholder {
 
 /* Movies */
 .content-row{
-    margin: 50px 0;
+    margin: 65px 0;
 }
 
 .section-header{
@@ -312,8 +296,11 @@ input::placeholder {
 }
 
 .section-header a{
-    color:#e50914;
-    text-decoration:none;
+    color: white;
+    text-decoration: none;
+    border: 0.08rem solid white;
+    padding: 0.5rem 1.6rem;
+    border-radius: 1.1rem;
 }
 
 .movie-slider{
@@ -352,7 +339,7 @@ input::placeholder {
 
 .slider-poster{
 
-    width:100%;
+    width:95%;
     height:300px;
 
     border-radius:16px;

@@ -6,9 +6,9 @@ function renderSlider(containerId, movies)
 
     movies.forEach(movie=>{
 
-        const card = document.createElement("div");
+        const card = document.createElement("li");
 
-        card.className = "slider-card";
+        card.className = "splide__slide slider-card";
 
         card.innerHTML = `
             <div
@@ -31,5 +31,23 @@ function renderSlider(containerId, movies)
         container.appendChild(card);
 
     });
+
+}
+function createSplide(id) {
+
+    new Splide(`#${id}`, {
+        perPage: 6,
+        gap: "1rem",
+        drag: true,
+        pagination: false,
+        direction: "rtl",
+
+        breakpoints: {
+            1200: { perPage: 5 },
+            992: { perPage: 4 },
+            768: { perPage: 3 },
+            576: { perPage: 2 },
+        },
+    }).mount();
 
 }
