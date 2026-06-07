@@ -10,15 +10,26 @@ async function loadComponent(id, file) {
 
         document.getElementById(id).innerHTML = html;
     }
-    catch(error){
+    catch (error) {
         console.error(error);
     }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    await loadComponent("header-container", "components/header.html");
+    const basePath =
+        window.location.pathname.includes("/components/")
+            ? "../components/"
+            : "components/";
 
-    await loadComponent("footer-container", "components/footer.html");
+    await loadComponent(
+        "header-container",
+        `${basePath}header.html`
+    );
+
+    await loadComponent(
+        "footer-container",
+        `${basePath}footer.html`
+    );
 
 });
