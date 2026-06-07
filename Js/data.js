@@ -12,6 +12,7 @@ const DATA = [
         category: "comedy",
         featured: true,
         type: "movie",
+        imdbID: "tt2948356",
       },
       {
         id: 2,
@@ -25,6 +26,7 @@ const DATA = [
         category: "action",
         featured: true,
         type: "movie",
+        imdbID: "",
       },
       {
         id: 3,
@@ -38,6 +40,7 @@ const DATA = [
         category: "fantasy",
         featured: true,
         type: "movie",
+        imdbID: "tt12324366",
       },
       {
         id: 4,
@@ -51,6 +54,7 @@ const DATA = [
         category: "action",
         featured: true,
         type: "movie",
+        imdbID: "tt2185037",
       },
       {
         id: 5,
@@ -64,6 +68,7 @@ const DATA = [
         category: "thriller",
         featured: false,
         type: "movie",
+        imdbID: "tt14364480",
       },
       {
         id: 7,
@@ -77,6 +82,7 @@ const DATA = [
         category: "action",
         featured: false,
         type: "movie",
+        imdbID: "tt28291010",
       }
     ];
   
@@ -92,9 +98,10 @@ const NEW_MOVIES = [
         year: "2024",
         rate: "7.6",
         category: "criminal",
-       featured: false,
+        featured: false,
         type: "movie",
-    },
+        imdbID: "tt37218592",
+      },
       {
         id: 8,
         title: "Detective Kien: The Headless Horror",
@@ -105,9 +112,10 @@ const NEW_MOVIES = [
         year: "2025",
         rate: "7",
         category: "scary",
-       featured: false,
+        featured: false,
         type: "movie",
-    },
+        imdbID: "tt36386168",
+      },
       {
         id: 9,
         title: "Five Nights at Freddy's 2",
@@ -120,6 +128,7 @@ const NEW_MOVIES = [
         category: "scary",
         featured: false,
         type: "movie",
+        imdbID: "tt30274401",
       }
     ];
 
@@ -137,7 +146,8 @@ const Series = [
         category: "criminal",
         featured: false,
         type: "Series",
-    },
+        imdbID: "tt37218592",
+      },
       {
         id: 8,
         title: "Detective Kien: The Headless Horror",
@@ -150,7 +160,8 @@ const Series = [
         category: "scary",
         featured: false,
         type: "Series",
-    },
+        imdbID: "tt36386168",
+      },
       {
         id: 9,
         title: "Five Nights at Freddy's 2",
@@ -164,6 +175,7 @@ const Series = [
         category: "scary",
         featured: false,
         type: "Series",
+        imdbID: "tt30274401",
       }
     ];
   
@@ -181,7 +193,8 @@ const Anime = [
         category: "criminal",
         featured: false,
         type: "Series",
-    },
+        imdbID: "tt37218592",
+      },
       {
         id: 8,
         title: "Detective Kien: The Headless Horror",
@@ -194,7 +207,8 @@ const Anime = [
         category: "scary",
         featured: false,
         type: "Series",
-    },
+        imdbID: "tt36386168",
+      },
       {
         id: 9,
         title: "Five Nights at Freddy's 2",
@@ -208,6 +222,7 @@ const Anime = [
         category: "scary",
         featured: false,
         type: "Series",
+        imdbID: "tt30274401",
       }
     ];
   

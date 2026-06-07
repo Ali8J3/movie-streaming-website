@@ -33,6 +33,7 @@ function renderSlider(containerId, movies)
     });
 
 }
+
 function createSplide(id) {
 
     new Splide(`#${id}`, {
