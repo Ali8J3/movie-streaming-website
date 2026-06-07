@@ -1,50 +1,38 @@
 const WATCHMODE_API_KEY = "ETql0PmOls46PHjCwmXNPNsOlxwNQHNPfTXVCBbR";
+const OMDB_KEY = "a3d3c727";
 
-// Default -> Fetch Data From API
-async function getWatchmodeMovie(id) {
-
-    try {
-
-        const response = await fetch(
-            `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${WATCHMODE_API_KEY}`
-        );
-
-        if (!response.ok)
-            throw new Error();
-
-        return await response.json();
-
-    }
-    catch {
-
-        return null;
-
-    }
-}
-
-// FallBack -> Find Data Locally
-async function getCachedMovie(id) {
-
-    const cacheKey =
-        `watchmode_${id}`;
+async function fetchWithCache(url, cacheKey) {
 
     const cached =
         localStorage.getItem(cacheKey);
 
-    if (cached)
-        return JSON.parse(cached);
+    if (cached) {
 
-    const movie =
-        await getWatchmodeMovie(id);
+        const data = JSON.parse(cached);
 
-    if (movie) {
+        const age =
+            Date.now() - data.timestamp;
 
-        localStorage.setItem(
-            cacheKey,
-            JSON.stringify(movie)
-        );
+        const oneDay =
+            24 * 60 * 60 * 1000;
 
+        if (age < oneDay)
+            return data.value;
     }
 
-    return movie;
+    const response =
+        await fetch(url);
+
+    const value =
+        await response.json();
+
+    localStorage.setItem(
+        cacheKey,
+        JSON.stringify({
+            timestamp: Date.now(),
+            value
+        })
+    );
+
+    return value;
 }

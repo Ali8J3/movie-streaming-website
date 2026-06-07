@@ -1,22 +1,26 @@
-function renderSlider(containerId, movies)
-    {
-    const container = document.getElementById(containerId);
+async function renderSlider(containerId, movies) {
+
+    const container =
+        document.getElementById(containerId);
 
     container.innerHTML = "";
 
-    movies.forEach(movie=>{
+    movies.forEach(movie => {
 
-        const card = document.createElement("li");
+        const card =
+            document.createElement("li");
 
-        card.className = "splide__slide slider-card";
+        card.className =
+            "splide__slide slider-card";
+
+        const poster =
+            movie.poster ||
+            "https://placehold.co/300x450?text=No+Image";
 
         card.innerHTML = `
             <div
                 class="slider-poster"
-                style="
-                    background-image:
-                    url(Media/${movie.poster})
-                ">
+                style="background-image:url('${poster}')">
             </div>
 
             <div class="slider-title">
@@ -24,14 +28,15 @@ function renderSlider(containerId, movies)
             </div>
         `;
 
-        card.onclick = () =>
+        card.onclick = () => {
+
             location.href =
-                `components/play.html?id=${movie.id}`;
+                `components/play.html?imdb=${movie.imdb_id}`;
+
+        };
 
         container.appendChild(card);
-
     });
-
 }
 
 function createSplide(id) {
