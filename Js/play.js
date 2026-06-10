@@ -5,7 +5,7 @@ const params =
 
 const imdbID =
     params.get("imdb");
-    
+
 const loadingScreen =
     document.getElementById(
         "loadingScreen"
@@ -143,111 +143,109 @@ async function getMovie() {
 
 }
 
-(async () => {
+// (async () => {
 
-    if (!imdbID) return;
+//     if (!imdbID) return;
 
-    const movie =
-        await getMovie();
+//     const movie =
+//         await getMovie();
 
-        console.log(movie);
+//         console.log(movie);
         
         
-    document.getElementById(
-        "BG-Poster"
-    ).src =
-        `${movie.Poster}`;
+//     document.getElementById(
+//         "BG-Poster"
+//     ).src =
+//         `${movie.Poster}`;
 
-    document.getElementById(
-        "watchBtn"
-    ).href =
-        `stream.html?imdb=${imdbID}`;
+//     document.getElementById(
+//         "watchBtn"
+//     ).href =
+//         `stream.html?imdb=${imdbID}`;
 
-    document.title =
-        movie.Title;
+//     document.title =
+//         movie.Title;
 
-    document.getElementById(
-        "movieTitle"
-    ).textContent =
-        movie.Title;
+//     document.getElementById(
+//         "movieTitle"
+//     ).textContent =
+//         movie.Title;
 
-    document.getElementById(
-        "rating"
-    ).textContent =
-        `${movie.imdbRating}/10`;
+//     document.getElementById(
+//         "rating"
+//     ).textContent =
+//         `${movie.imdbRating}/10`;
 
-    // document.getElementById(
-    //     "runtime"
-    // ).textContent =
-    //     ` ${movie.Runtime}`;
+//     // document.getElementById(
+//     //     "runtime"
+//     // ).textContent =
+//     //     ` ${movie.Runtime}`;
 
-    // document.getElementById(
-    //     "year"
-    // ).textContent =
-    //     `${movie.Year} • ${movie.Runtime} • ${movie.imdbRating}`;
+//     // document.getElementById(
+//     //     "year"
+//     // ).textContent =
+//     //     `${movie.Year} • ${movie.Runtime} • ${movie.imdbRating}`;
 
-    let faPlot;
+//     let faPlot;
 
-    try {
+//     try {
 
-        faPlot =
-            await translateText(movie.Plot);
+//         faPlot =
+//             await translateText(movie.Plot);
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.error(
-            "Translation failed:",
-            error
-        );
+//         console.error(
+//             "Translation failed:",
+//             error
+//         );
 
-        faPlot =
-            movie.Plot;
-    }
+//         faPlot =
+//             movie.Plot;
+//     }
 
-    document.getElementById(
-        "moviePlot"
-    ).textContent =
-       faPlot;
+//     document.getElementById(
+//         "moviePlot"
+//     ).textContent =
+//        faPlot;
 
-    document.getElementById(
-        "moviePoster"
-    ).src =
-        movie.Poster;
+//     document.getElementById(
+//         "moviePoster"
+//     ).src =
+//         movie.Poster;
 
-    await renderSeries(movie);
+//     await renderSeries(movie);
         
-})();
+// })();
 
 async function translateText(text) {
+
+    const key =
+        `plot_fa_${imdbID}`;
+
+    const cached =
+        localStorage.getItem(key);
+
+    if (cached)
+        return cached;
 
     const response =
         await fetch(
             `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|fa`
         );
 
-    if (!response.ok) {
-
-        throw new Error(
-            `HTTP ${response.status}`
-        );
-
-    }
-
     const data =
         await response.json();
 
-    if (
-        !data.responseData ||
-        !data.responseData.translatedText
-    ) {
+    const translated =
+        data?.responseData?.translatedText || text;
 
-        throw new Error(
-            "Invalid translation response"
-        );
+    localStorage.setItem(
+        key,
+        translated
+    );
 
-    }
-
-    return data.responseData.translatedText;
+    return translated;
 }
 
 const commentsKey =
