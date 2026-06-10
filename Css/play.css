@@ -9,7 +9,7 @@ body{
 *{
   
     font-family: "Vazirmatn", sans-serif;
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #movieTitle{
@@ -85,40 +85,6 @@ body{
     padding:30px;
 }
 
-.quality-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(180px,1fr));
-
-    gap:15px;
-}
-
-.quality-btn{
-
-    background:#252525;
-
-    color:white;
-
-    text-decoration:none;
-
-    text-align:center;
-
-    padding:16px;
-
-    border-radius:12px;
-
-    transition:.25s;
-}
-
-.quality-btn:hover{
-
-    background:#353535;
-
-    transform:translateY(-2px);
-}
-
 .suggestions-slider{
 
     display:flex;
@@ -180,53 +146,45 @@ body{
     margin:auto;
 
     padding:30px;
-
-    display:grid;
-
-    grid-template-columns:300px 1fr;
-
-    gap:20px;
 }
 
-.stream-box,
-.download-box{
+.stream-box{
 
-    background:#141414;
+    background:#181818;
 
     border:1px solid rgba(255,255,255,.08);
 
     border-radius:18px;
 
     padding:24px;
+
+    gap: 16px;
+
+    display: flex;
+
+    align-items: center;
+    
+    flex-wrap: wrap;
+
+    justify-content: space-around;
 }
 
-.quality-btn{
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    height:56px;
-
-    background:#232323;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:white;
-
-    border-radius:14px;
-
-    text-decoration:none;
-
-    transition:.25s;
+.stream-item {
+    display: flex;
+    gap: 5px;
+    white-space: nowrap;
 }
 
-.quality-btn:hover{
-
-    background:#303030;
-
-    transform:translateY(-2px);
+#watchBtn{
+    
+    color: black;
+    text-decoration: none;
+    font-size: x-large;
+    font-weight: 500;
+    background-color: #FFC700;
+    border: 1px solid #FFC700;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 #BG-Poster{
@@ -345,11 +303,6 @@ body{
     width: 100% !important;
   }
 
-  .quality-btn,
-  .download-btn {
-    width: 100% !important;
-  }
-
   .suggestions-slider {
     overflow-x: auto;
     display: flex;
@@ -372,4 +325,20 @@ body{
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .stream-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stream-item,
+    .stream-btn {
+        width: 100%;
+    }
+
+    .stream-btn {
+        text-align: center;
+    }
 }

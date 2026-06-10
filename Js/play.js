@@ -23,6 +23,9 @@ async function getMovie() {
     const movie =
         await getMovie();
 
+        console.log(movie);
+        
+        
     document.getElementById(
         "BG-Poster"
     ).src =
@@ -31,7 +34,7 @@ async function getMovie() {
     document.getElementById(
         "watchBtn"
     ).href =
-        `watch.html?imdb=${imdbID}`;
+        `stream.html?imdb=${imdbID}`;
 
     document.title =
         movie.Title;
@@ -42,11 +45,20 @@ async function getMovie() {
         movie.Title;
 
     document.getElementById(
-        "movieMeta"
+        "rating"
     ).textContent =
-        `${movie.Year} • ${movie.Runtime} • ${movie.imdbRating}`;
+        `${movie.imdbRating}/10`;
 
-        
+    // document.getElementById(
+    //     "runtime"
+    // ).textContent =
+    //     ` ${movie.Runtime}`;
+
+    // document.getElementById(
+    //     "year"
+    // ).textContent =
+    //     `${movie.Year} • ${movie.Runtime} • ${movie.imdbRating}`;
+
     let faPlot;
 
     try {
