@@ -24,9 +24,9 @@ async function getMovie() {
         await getMovie();
 
     document.getElementById(
-        "heroSection"
-    ).style.backgroundImage =
-        `url('${movie.Poster}')`;
+        "BG-Poster"
+    ).src =
+        `${movie.Poster}`;
 
     document.getElementById(
         "watchBtn"
