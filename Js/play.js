@@ -1,3 +1,11 @@
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const imdbID =
+    params.get("imdb");
+    
 const loadingScreen =
     document.getElementById(
         "loadingScreen"
@@ -125,14 +133,6 @@ function hideLoading() {
     }
 
 })();
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-const imdbID =
-    params.get("imdb");
 
 async function getMovie() {
 
