@@ -24,21 +24,19 @@ body{
 }
 
 .movie-container{
-
     position:relative;
 
-    overflow:hidden;
-
-    max-width:1200px;
+    max-width:1400px;
 
     margin:20px auto;
 
-    padding:40px;
+    min-height:500px;
+
+    padding:50px;
 
     border-radius:24px;
 
-    background-size:cover;
-    background-position:center;
+    overflow:hidden;
 }
 
 .movie-content{
@@ -190,61 +188,119 @@ body{
 .stream-box,
 .download-box{
 
-    background:#171717;
+    background:#141414;
+
+    border:1px solid rgba(255,255,255,.08);
 
     border-radius:18px;
 
-    padding:20px;
+    padding:24px;
 }
 
-.stream-btn{
+.quality-btn{
 
-    display:block;
+    display:flex;
 
-    text-align:center;
+    justify-content:center;
+    align-items:center;
 
-    text-decoration:none;
+    height:56px;
 
-    padding:16px;
+    background:#232323;
 
-    border-radius:12px;
-
-    background:#e50914;
+    border:1px solid rgba(255,255,255,.08);
 
     color:white;
 
-    font-weight:700;
+    border-radius:14px;
 
-    margin-top:15px;
+    text-decoration:none;
+
+    transition:.25s;
+}
+
+.quality-btn:hover{
+
+    background:#303030;
+
+    transform:translateY(-2px);
 }
 
 #BG-Poster{
+        
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
     filter: blur(8px) brightness(0.35);
+
+    transform:scale(1.1);
+
+    z-index:0;
+}
+
+.suggestions-slider{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    padding:10px 0;
+
+    scrollbar-width:none;
+}
+
+.suggestions-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.suggestions-slider li{
+
+    width:150px;
+
+    flex-shrink:0;
+
+    list-style:none;
 }
 
 @media(max-width:768px){
 
     .movie-backdrop{
-
-        backdrop-filter:none;
+        position:absolute;
+        inset:0;
 
         background:
-            rgba(13,13,13,.88);
+            linear-gradient(
+                to top,
+                rgba(13,13,13,.95),
+                rgba(13,13,13,.45)
+            );
+
+        z-index:1;
+    }
+
+    .movie-container{
+        padding:20px;
     }
 
     .movie-content{
-
+        flex-direction:row;
+        align-items:flex-start;
         gap:15px;
     }
 
     .movie-poster{
-
-        width:120px;
+        width:130px;
+        min-width:130px;
     }
 
-    #movieTitle{
-
-        font-size:1.3rem;
+    .movie-details{
+        flex:1;
     }
 
     .movie-meta{
@@ -252,14 +308,17 @@ body{
         font-size:.85rem;
     }
 
+    #movieTitle{
+        font-size:1.2rem;
+    }
+
     #moviePlot{
-
-        font-size:.9rem;
-
+        font-size:.85rem;
         line-height:1.8;
     }
 
     #BG-Poster{
-    filter: blur(0) brightness(1);
-}
+        filter:none;
+        transform:none;
+    }
 }
