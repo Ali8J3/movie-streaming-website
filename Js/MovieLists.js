@@ -4,7 +4,8 @@ async function renderSlider(containerId, movies) {
         document.getElementById(containerId);
 
     container.innerHTML = "";
-
+    console.log("mapping lists");
+    
     movies.forEach(movie => {
 
         const card =

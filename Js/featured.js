@@ -1,21 +1,17 @@
-/* -------------------------
-   Fetch Watchmode list
--------------------------- */
-
+// Fetch Watchmode list
 async function getFeaturedList() {
 
     const data = await fetchWithCache(
-        `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY}&types=movie&limit=4`,
+        `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY_3}&types=movie&limit=4`,
         "featured_list"
     );
+
+    console.log(data);
 
     return data.titles || [];
 }
 
-/* -------------------------
-   Fetch OMDb Poster
--------------------------- */
-
+// Fetch OMDb Poster
 async function getPoster(imdbID) {
 
     if (!imdbID) return "https://placehold.co/300x450?text=No+Image";
@@ -26,14 +22,11 @@ async function getPoster(imdbID) {
     );
 
     return data?.Poster && data.Poster !== "N/A"
-        ? upgradeOmdbImage(data.Poster)
+        ? data.Poster
         : "https://placehold.co/300x450?text=No+Image";
 }
 
-/* -------------------------
-   DOM
--------------------------- */
-
+// DOM
 const featuredPoster =
     document.getElementById("featuredPoster");
 
@@ -50,10 +43,7 @@ let currentMovie = null;
 
 let featuredMovies = [];
 
-/* -------------------------
-   Render Main Featured
--------------------------- */
-
+// Render Main Featured
 function renderFeatured(movie) {
 
     currentMovie = movie;
@@ -75,10 +65,7 @@ function renderFeatured(movie) {
         });
 }
 
-/* -------------------------
-   Render Slider
--------------------------- */
-
+// Render Slider
 function renderFeaturedSlider() {
 
     featuredSlider.innerHTML = "";
@@ -101,10 +88,7 @@ function renderFeaturedSlider() {
     });
 }
 
-/* -------------------------
-   Init (IMPORTANT)
--------------------------- */
-
+// Init (IMPORTANT)
 (async function initFeatured() {
 
     const list = await getFeaturedList();
@@ -135,10 +119,7 @@ function renderFeaturedSlider() {
 
 })();
 
-/* -------------------------
-   Play Button
--------------------------- */
-
+// Play Button 
 featuredPlayBtn.addEventListener("click", () => {
 
     if (!currentMovie) return;
@@ -146,12 +127,3 @@ featuredPlayBtn.addEventListener("click", () => {
     location.href =
         `components/play.html?imdb=${currentMovie.imdb_id}`;
 });
-
-// ...
-function upgradeOmdbImage(url) {
-    if (!url) return url;
-
-    return url
-        .replace(/_V1_QL\d+_/g, "_V1_QL100_")
-        .replace(/UX\d+/, "UX1000");
-}

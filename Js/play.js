@@ -36,19 +36,70 @@ async function getMovie() {
     ).textContent =
         `${movie.Year} • ${movie.Runtime} • ${movie.imdbRating}`;
 
+        
+    let faPlot;
+
+    try {
+
+        faPlot =
+            await translateText(movie.Plot);
+
+    } catch (error) {
+
+        console.error(
+            "Translation failed:",
+            error
+        );
+
+        faPlot =
+            movie.Plot;
+    }
+
     document.getElementById(
         "moviePlot"
     ).textContent =
-        movie.Plot;
+       faPlot;
 
     document.getElementById(
         "moviePoster"
     ).src =
         movie.Poster;
 
-    document.getElementById(
-        "playerFrame"
-    ).src =
-        `https://embedmaster.link/movie/${imdbID}`;
+    // document.getElementById(
+    //     "playerFrame"
+    // ).src =
+    //     `https://embedmaster.link/movie/${imdbID}`;
 
 })();
+
+async function translateText(text) {
+
+    const response =
+        await fetch(
+            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|fa`
+        );
+
+    if (!response.ok) {
+
+        throw new Error(
+            `HTTP ${response.status}`
+        );
+
+    }
+
+    const data =
+        await response.json();
+
+    if (
+        !data.responseData ||
+        !data.responseData.translatedText
+    ) {
+
+        throw new Error(
+            "Invalid translation response"
+        );
+
+    }
+
+    return data.responseData.translatedText;
+}

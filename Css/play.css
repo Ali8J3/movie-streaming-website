@@ -6,6 +6,10 @@ body{
     font-family:sans-serif;
 }
 
+*{
+  font-family: "Vazirmatn", sans-serif;
+}
+
 .player-wrapper{
     position:relative;
     width:100%;
@@ -22,6 +26,7 @@ body{
 .movie-info{
     margin-top:30px;
     display:flex;
+    flex-direction: row-reverse;
     gap:20px;
 }
 

@@ -1,13 +1,17 @@
-async function getList(typeQuery, cacheKey) {
-
+// Gets List Of Movies/Series From api.js
+async function getList(typeQuery, cacheKey, type) {
+    
+    let key = type ? WATCHMODE_API_KEY : WATCHMODE_API_KEY_2;
+        
     const url =
-        `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY}&${typeQuery}&limit=10`;
+        `https://api.watchmode.com/v1/list-titles/?apiKey=${key}&${typeQuery}&limit=10`;
 
     const res = await fetchWithCache(url, cacheKey);
 
     return res.titles || [];
 }
 
+// Adds Posters From OMDB To Data Received From WatchMode
 async function enrichWithPosters(list) {
 
     return Promise.all(
@@ -40,35 +44,30 @@ async function enrichWithPosters(list) {
 }
 
 async function getMovies() {
-    const list = await getList("types=movie", "movies");
+    const list = await getList("types=movie", "movies", true);
+
     return enrichWithPosters(list);
 }
 
 async function getSeries() {
-    const list = await getList("types=tv_series", "series");
+    const list = await getList("types=tv_series", "series", false);
+
     return enrichWithPosters(list);
 }
 
-async function getAnime() {
-    const list = await getList("genres=16", "anime");
-    return enrichWithPosters(list);
-}
-
+// >>Execute
 (async () => {
 
     const [movies, series, anime] =
         await Promise.all([
             getMovies(),
-            getSeries(),
-            getAnime()
+            getSeries()
         ]);
 
     renderSlider("newMoviesSlider", movies);
     renderSlider("newSeriesSlider", series);
-    renderSlider("newAnimeSlider", anime);
 
     createSplide("newMoviesSplide");
     createSplide("newSeriesSplide");
-    createSplide("newAnimeSplide");
 
 })();
