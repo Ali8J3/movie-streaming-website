@@ -342,3 +342,64 @@ body{
         text-align: center;
     }
 }
+
+.series-section{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:30px;
+}
+
+.season-box{
+
+    background:#181818;
+
+    border-radius:18px;
+
+    margin-bottom:20px;
+
+    overflow:hidden;
+}
+
+.season-title{
+
+    padding:16px 20px;
+
+    background:#242424;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+}
+
+.episodes{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:20px;
+}
+
+.episode-btn{
+
+    background:#FFC700;
+
+    color:#000;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:10px 16px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-weight:600;
+}

@@ -13,6 +13,15 @@ body{
     font-family:"Vazirmatn",sans-serif;
 }
 
+#pageTitle{
+
+    margin-top: 6rem;
+    
+    margin-right: 2rem;
+    
+    text-align: right;
+}
+
 #listContainer{
 
     max-width:1400px;
@@ -70,9 +79,26 @@ body{
     line-height:1.4;
 }
 
+#loadMoreBtn{
+
+    background-color: #FFC700;
+    
+    font-size: 1.7rem;
+    
+    font-weight: 400;
+    
+    border: 1rem solid #FFC700;
+    
+    border-radius: 1rem;
+    
+    display: flex;
+    
+    justify-self: center;
+}
+
 @media(max-width:768px){
 
-    .listContainer{
+    #listContainer{
 
         grid-template-columns:
             repeat(

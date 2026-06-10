@@ -86,6 +86,8 @@ async function getMovie() {
         "moviePoster"
     ).src =
         movie.Poster;
+
+    await renderSeries(movie);
         
 })();
 
@@ -188,3 +190,95 @@ document.getElementById(
 });
 
 loadComments();
+
+async function getSeason(seasonNumber) {
+
+    return await fetchWithCache(
+
+        `https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${imdbID}&Season=${seasonNumber}`,
+
+        `season_${imdbID}_${seasonNumber}`
+    );
+
+}
+
+async function renderSeries(movie) {
+
+    if (movie.Type !== "series")
+        return;
+
+    document.getElementById(
+        "seriesSection"
+    ).style.display = "block";
+
+    const container =
+        document.getElementById(
+            "seasonsContainer"
+        );
+
+    container.innerHTML = "";
+
+    const totalSeasons =
+        parseInt(movie.totalSeasons || 1);
+
+    for (
+        let season = 1;
+        season <= totalSeasons;
+        season++
+    ) {
+
+        const seasonData =
+            await getSeason(season);
+
+        const seasonBox =
+            document.createElement("div");
+
+        seasonBox.className =
+            "season-box";
+
+        seasonBox.innerHTML = `
+            <div class="season-title">
+                فصل ${season}
+            </div>
+
+            <div
+                class="episodes"
+                id="episodes_${season}"
+            ></div>
+        `;
+
+        container.appendChild(
+            seasonBox
+        );
+
+        const episodesContainer =
+            document.getElementById(
+                `episodes_${season}`
+            );
+
+        seasonData.Episodes?.forEach(
+            episode => {
+
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+                link.className =
+                    "episode-btn";
+
+                link.textContent =
+                    `قسمت ${episode.Episode}`;
+
+                link.href =
+                    `stream.html?imdb=${imdbID}&season=${season}&episode=${episode.Episode}`;
+
+                episodesContainer.appendChild(
+                    link
+                );
+
+            }
+        );
+    }
+
+}
