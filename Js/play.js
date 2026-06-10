@@ -1,3 +1,130 @@
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+function showLoading() {
+
+    loadingScreen?.classList.remove(
+        "hidden"
+    );
+
+    document
+        .getElementById(
+            "header-container"
+        )
+        ?.classList.add("hidden");
+
+    document
+        .getElementById(
+            "container"
+        )
+        ?.classList.add("hidden");
+}
+
+function hideLoading() {
+
+    loadingScreen?.classList.add(
+        "hidden"
+    );
+
+    document
+        .getElementById(
+            "header-container"
+        )
+        ?.classList.remove("hidden");
+
+    document
+        .getElementById(
+            "container"
+        )
+        ?.classList.remove("hidden");
+}
+
+(async function init() {
+
+    showLoading();
+
+    try {
+
+        if (!imdbID)
+            return;
+
+        const movie =
+            await getMovie();
+
+        console.log(movie);
+
+        document.getElementById(
+            "BG-Poster"
+        ).src =
+            movie.Poster;
+
+        document.getElementById(
+            "watchBtn"
+        ).href =
+            `stream.html?imdb=${imdbID}`;
+
+        document.title =
+            movie.Title;
+
+        document.getElementById(
+            "movieTitle"
+        ).textContent =
+            movie.Title;
+
+        document.getElementById(
+            "rating"
+        ).textContent =
+            `${movie.imdbRating}/10`;
+
+        let faPlot;
+
+        try {
+
+            faPlot =
+                await translateText(
+                    movie.Plot
+                );
+
+        } catch {
+
+            faPlot =
+                movie.Plot;
+        }
+
+        document.getElementById(
+            "moviePlot"
+        ).textContent =
+            faPlot;
+
+        document.getElementById(
+            "moviePoster"
+        ).src =
+            movie.Poster;
+
+        await renderSeries(
+            movie
+        );
+
+        loadComments();
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+    }
+    finally {
+
+        setTimeout(
+            hideLoading,
+            500
+        );
+
+    }
+
+})();
 
 const params =
     new URLSearchParams(

@@ -12,6 +12,10 @@ body{
     box-sizing: border-box;
 }
 
+#header-container{
+    margin-top: 2rem;
+}
+
 #movieTitle{
 
     font-size:2.8rem;
@@ -402,4 +406,59 @@ body{
     text-decoration:none;
 
     font-weight:600;
+}
+/* -------------------------
+   Loading Screen
+-------------------------- */
+
+#loadingScreen {
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #111;
+
+    z-index: 99999;
+
+    transition: .3s;
+}
+
+#loadingScreen.hidden {
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-logo {
+
+    width: 120px;
+
+    animation:
+        pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(.9);
+        opacity: .7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(.9);
+        opacity: .7;
+    }
+}
+
+.hidden {
+    display: none !important;
 }
