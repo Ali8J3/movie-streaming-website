@@ -5,14 +5,20 @@ body{
     color:white;
 }
 
+*{
+  font-family: "Vazirmatn", sans-serif;
+}
+
 .hero{
 
-    height:55vh;
+    position:relative;
+
+    min-height: 80vh;
+
+    overflow:hidden;
 
     background-size:cover;
     background-position:center;
-
-    position:relative;
 }
 
 .hero-overlay{
@@ -20,12 +26,14 @@ body{
     position:absolute;
     inset:0;
 
+    backdrop-filter:blur(18px);
+
     background:
-    linear-gradient(
-        to top,
-        #0d0d0d,
-        rgba(0,0,0,.2)
-    );
+        linear-gradient(
+            to left,
+            rgba(13,13,13,.55),
+            rgba(13,13,13,.95)
+        );
 
     display:flex;
     align-items:end;
@@ -101,7 +109,7 @@ body{
 
 .quality-btn{
 
-    background:#1f1f1f;
+    background:#252525;
 
     color:white;
 
@@ -113,12 +121,14 @@ body{
 
     border-radius:12px;
 
-    transition:.2s;
+    transition:.25s;
 }
 
 .quality-btn:hover{
 
-    background:#2b2b2b;
+    background:#353535;
+
+    transform:translateY(-2px);
 }
 
 .suggestions-slider{
@@ -175,21 +185,103 @@ body{
     border-radius:12px;
 }
 
+.actions-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:30px;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:20px;
+}
+
+.stream-box,
+.download-box{
+
+    background:#171717;
+
+    border-radius:18px;
+
+    padding:20px;
+}
+
+.stream-btn{
+
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    background:#e50914;
+
+    color:white;
+
+    font-weight:700;
+
+    margin-top:15px;
+}
+
 @media(max-width:768px){
+
+    .hero{
+        height: 40vh;
+    }
 
     .movie-container{
 
-        flex-direction:column;
+        flex-direction:row;
+
+        gap:15px;
+
+        align-items:flex-start;
     }
 
     .movie-poster{
 
-        width:100%;
-        max-width:320px;
+        width:120px;
+
+        min-width:120px;
+    }
+
+    .movie-details h2{
+        font-size:1.1rem;
+    }
+
+    #moviePlot{
+
+        line-height:1.8;
+
+        font-size:.9rem;
     }
 
     #movieTitle{
+        font-size:1.8rem;
+    }
 
-        font-size:2rem;
+    .hero-overlay{
+
+        backdrop-filter:none;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(13,13,13,.95),
+                rgba(13,13,13,.5)
+            );
+    }
+
+        .actions-container{
+
+        grid-template-columns:1fr;
     }
 }

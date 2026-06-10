@@ -74,12 +74,7 @@ async function getMovie() {
         "moviePoster"
     ).src =
         movie.Poster;
-
-    // document.getElementById(
-    //     "playerFrame"
-    // ).src =
-    //     `https://embedmaster.link/movie/${imdbID}`;
-
+        
 })();
 
 async function translateText(text) {
