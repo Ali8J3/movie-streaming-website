@@ -1,87 +1,80 @@
-const params = new URLSearchParams(window.location.search);
+const params =
+    new URLSearchParams(location.search);
 
-const type = params.get("type") || "movie";
+const type =
+    params.get("type") || "movie";
 
-const wrapper = document.querySelector(".list-wrapper");
+const title =
+    document.getElementById("pageTitle");
 
-async function getTitles() {
+const container =
+    document.getElementById("listContainer");
 
-    let query = "";
+const loadMoreBtn =
+    document.getElementById("loadMoreBtn");
 
-    if (type === "movie") {
+let currentPage = 1;
 
-        query =
-            "types=movie";
+let allTitles = [];
 
-    } else {
+title.textContent =
+    type === "series"
+        ? "سریال های جدید"
+        : "فیلم های جدید";
 
-        query =
-            "types=tv_series";
+
+async function getTitles(page) {
+
+    const cacheKey =
+        `list_${type}_${page}`;
+
+    const cached =
+        localStorage.getItem(cacheKey);
+
+    if (cached) {
+
+        return JSON.parse(cached);
 
     }
 
-    const data =
-        await fetchWithCache(
-            `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY}&${query}&limit=40`,
-            `list_${type}`
-        );
-
-    return data.titles || [];
-
-}
-
-async function getPoster(imdbID) {
-
-    if (!imdbID)
-        return "https://placehold.co/300x450";
+    const watchType =
+        type === "series"
+            ? "tv_series"
+            : "movie";
 
     const data =
         await fetchWithCache(
-            `https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${imdbID}`,
-            `poster_${imdbID}`
+            `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY}&types=${watchType}&limit=20&page=${page}`,
+            cacheKey
         );
 
-    return data?.Poster &&
-        data.Poster !== "N/A"
-            ? data.Poster
-            : "https://placehold.co/300x450";
+    localStorage.setItem(
+        cacheKey,
+        JSON.stringify(data)
+    );
+
+    return data;
+
 }
 
-(async () => {
 
-    document.title =
-        type === "movie"
-            ? "New Movies"
-            : "New Series";
+function renderTitles(titles) {
 
-    const titles =
-        await getTitles();
-
-    wrapper.innerHTML = "";
-
-    for (const movie of titles) {
-
-        const poster =
-            await getPoster(
-                movie.imdb_id
-            );
+    titles.forEach(movie => {
 
         const card =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         card.className =
             "movie-card";
 
         card.innerHTML = `
-            <img
-                src="${poster}"
-                alt="${movie.title}"
-            >
-
             <div class="movie-title">
                 ${movie.title}
+            </div>
+
+            <div class="movie-year">
+                ${movie.year || ""}
             </div>
         `;
 
@@ -92,8 +85,62 @@ async function getPoster(imdbID) {
 
         };
 
-        wrapper.appendChild(card);
+        container.appendChild(card);
+
+    });
+
+}
+
+
+async function loadPage(page) {
+
+    loadMoreBtn.disabled = true;
+
+    loadMoreBtn.textContent =
+        "Loading...";
+
+    const data =
+        await getTitles(page);
+
+    const titles =
+        data.titles || [];
+
+    allTitles.push(...titles);
+
+    renderTitles(titles);
+
+    loadMoreBtn.disabled = false;
+
+    loadMoreBtn.textContent =
+        "نمایش بیشتر";
+
+    if (
+        !titles.length ||
+        page >= (data.total_pages || 1)
+    ) {
+
+        loadMoreBtn.style.display =
+            "none";
 
     }
+
+}
+
+
+loadMoreBtn.addEventListener(
+    "click",
+    async () => {
+
+        currentPage++;
+
+        await loadPage(currentPage);
+
+    }
+);
+
+
+(async () => {
+
+    await loadPage(currentPage);
 
 })();

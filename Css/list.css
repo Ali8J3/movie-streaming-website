@@ -1,17 +1,4 @@
 body{
-    
-    overflow-x: hidden;
-    margin:0;
-    background:#0d0d0d;
-    color:white;
-}
-
-*{
-
-    font-family: "Vazirmatn", sans-serif;
-}
-
-body{
 
     overflow-x:hidden;
     margin:0;
@@ -26,7 +13,7 @@ body{
     font-family:"Vazirmatn",sans-serif;
 }
 
-.list-wrapper{
+#listContainer{
 
     max-width:1400px;
 
@@ -85,7 +72,7 @@ body{
 
 @media(max-width:768px){
 
-    .list-wrapper{
+    .listContainer{
 
         grid-template-columns:
             repeat(
