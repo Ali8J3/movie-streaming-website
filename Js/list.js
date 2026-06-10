@@ -58,9 +58,32 @@ async function getTitles(page) {
 }
 
 
-function renderTitles(titles) {
+async function getPoster(imdbID) {
 
-    titles.forEach(movie => {
+    if (!imdbID)
+        return "https://placehold.co/300x450";
+
+    const data =
+        await fetchWithCache(
+            `https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${imdbID}`,
+            `poster_${imdbID}`
+        );
+
+    return data?.Poster &&
+        data.Poster !== "N/A"
+            ? data.Poster
+            : "https://placehold.co/300x450";
+
+}
+
+async function renderTitles(titles) {
+
+    for (const movie of titles) {
+
+        const poster =
+            await getPoster(
+                movie.imdb_id
+            );
 
         const card =
             document.createElement("div");
@@ -69,6 +92,11 @@ function renderTitles(titles) {
             "movie-card";
 
         card.innerHTML = `
+            <img
+                src="${poster}"
+                alt="${movie.title}"
+            >
+
             <div class="movie-title">
                 ${movie.title}
             </div>
@@ -87,10 +115,9 @@ function renderTitles(titles) {
 
         container.appendChild(card);
 
-    });
+    }
 
 }
-
 
 async function loadPage(page) {
 
@@ -107,7 +134,7 @@ async function loadPage(page) {
 
     allTitles.push(...titles);
 
-    renderTitles(titles);
+    await renderTitles(titles);
 
     loadMoreBtn.disabled = false;
 
