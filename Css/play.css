@@ -1,12 +1,15 @@
 body{
-
+    
+    overflow-x: hidden;
     margin:0;
     background:#0d0d0d;
     color:white;
 }
 
 *{
-  font-family: "Vazirmatn", sans-serif;
+  
+    font-family: "Vazirmatn", sans-serif;
+  box-sizing: border-box;
 }
 
 #movieTitle{
@@ -321,4 +324,52 @@ body{
         filter:none;
         transform:none;
     }
+}
+
+@media (max-width: 768px) {
+
+  .movie-header,
+  .movie-info,
+  .content-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .poster {
+    width: 100% !important;
+    max-width: 300px;
+  }
+
+  .details {
+    width: 100% !important;
+  }
+
+  .quality-btn,
+  .download-btn {
+    width: 100% !important;
+  }
+
+  .suggestions-slider {
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .suggestion-card {
+    min-width: 160px;
+    flex: 0 0 auto;
+  }
+
+  /* prevent sideways shift issue */
+  html, body {
+    max-width: 100%;
+  }
+}
+
+.movie-info, .movie-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
