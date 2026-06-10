@@ -1,40 +1,195 @@
 body{
+
     margin:0;
-    padding:20px;
-    background:#111;
+    background:#0d0d0d;
     color:white;
-    font-family:sans-serif;
 }
 
-*{
-  font-family: "Vazirmatn", sans-serif;
-}
+.hero{
 
-.player-wrapper{
+    height:55vh;
+
+    background-size:cover;
+    background-position:center;
+
     position:relative;
-    width:100%;
-    padding-bottom:56.25%;
 }
 
-.player-wrapper iframe{
+.hero-overlay{
+
     position:absolute;
     inset:0;
-    width:100%;
-    height:100%;
-}
 
-.movie-info{
-    margin-top:30px;
+    background:
+    linear-gradient(
+        to top,
+        #0d0d0d,
+        rgba(0,0,0,.2)
+    );
+
     display:flex;
-    flex-direction: row-reverse;
-    gap:20px;
+    align-items:end;
 }
 
-.movie-info img{
-    width:220px;
-    border-radius:12px;
+.hero-content{
+
+    padding:40px;
+}
+
+#movieTitle{
+
+    font-size:3rem;
+    margin:0;
+}
+
+.movie-meta{
+
+    opacity:.8;
+    margin-top:10px;
+}
+
+.movie-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:30px;
+
+    display:flex;
+
+    gap:30px;
+}
+
+.movie-poster{
+
+    width:260px;
+
+    border-radius:20px;
+}
+
+.movie-details{
+
+    flex:1;
 }
 
 #moviePlot{
-    line-height:1.8;
+
+    line-height:2;
+}
+
+.stream-box,
+.suggestions,
+.comments{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:30px;
+}
+
+.quality-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+}
+
+.quality-btn{
+
+    background:#1f1f1f;
+
+    color:white;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    transition:.2s;
+}
+
+.quality-btn:hover{
+
+    background:#2b2b2b;
+}
+
+.suggestions-slider{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    padding:0;
+
+    list-style:none;
+}
+
+.comments textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    background:#1a1a1a;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:15px;
+}
+
+.comments button{
+
+    margin-top:10px;
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
+
+.comment{
+
+    margin-top:15px;
+
+    background:#1a1a1a;
+
+    padding:15px;
+
+    border-radius:12px;
+}
+
+@media(max-width:768px){
+
+    .movie-container{
+
+        flex-direction:column;
+    }
+
+    .movie-poster{
+
+        width:100%;
+        max-width:320px;
+    }
+
+    #movieTitle{
+
+        font-size:2rem;
+    }
 }

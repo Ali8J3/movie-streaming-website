@@ -23,6 +23,16 @@ async function getMovie() {
     const movie =
         await getMovie();
 
+    document.getElementById(
+        "heroSection"
+    ).style.backgroundImage =
+        `url('${movie.Poster}')`;
+
+    document.getElementById(
+        "watchBtn"
+    ).href =
+        `watch.html?imdb=${imdbID}`;
+
     document.title =
         movie.Title;
 
@@ -103,3 +113,71 @@ async function translateText(text) {
 
     return data.responseData.translatedText;
 }
+
+const commentsKey =
+    `comments_${imdbID}`;
+
+function loadComments() {
+
+    const comments =
+        JSON.parse(
+            localStorage.getItem(commentsKey)
+        ) || [];
+
+    const list =
+        document.getElementById(
+            "commentsList"
+        );
+
+    list.innerHTML = "";
+
+    comments.forEach(text => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "comment";
+
+        div.textContent =
+            text;
+
+        list.appendChild(div);
+
+    });
+
+}
+
+document.getElementById(
+    "commentBtn"
+).addEventListener("click", () => {
+
+    const input =
+        document.getElementById(
+            "commentInput"
+        );
+
+    const value =
+        input.value.trim();
+
+    if (!value) return;
+
+    const comments =
+        JSON.parse(
+            localStorage.getItem(commentsKey)
+        ) || [];
+
+    comments.unshift(value);
+
+    localStorage.setItem(
+        commentsKey,
+        JSON.stringify(comments)
+    );
+
+    input.value = "";
+
+    loadComments();
+
+});
+
+loadComments();

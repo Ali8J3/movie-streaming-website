@@ -14,47 +14,104 @@
 
 <body>
 
-    <!-- HEADER -->
     <div id="header-container"></div>
 
-    <section class="player-section">
+    <section id="heroSection" class="hero">
 
-        <div class="player-wrapper">
+        <div class="hero-overlay">
 
-            <iframe
-                id="playerFrame"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
+            <div class="hero-content">
+
+                <h1 id="movieTitle"></h1>
+
+                <div id="movieMeta" class="movie-meta"></div>
+
+            </div>
 
         </div>
 
     </section>
 
-    <section class="movie-info">
+    <section class="movie-container">
 
-        <img id="moviePoster">
+        <img
+            id="moviePoster"
+            class="movie-poster"
+        >
 
-        <div>
+        <div class="movie-details">
 
-            <h1 id="movieTitle"></h1>
-
-            <p id="movieMeta"></p>
+            <h2>داستان فیلم</h2>
 
             <p id="moviePlot"></p>
 
         </div>
 
     </section>
-    
-    <!-- Footer -->
+
+    <section class="stream-box">
+
+        <h2>پخش و دانلود</h2>
+
+        <div class="quality-grid">
+
+            <a
+                id="watchBtn"
+                class="quality-btn"
+            >
+                پخش آنلاین
+            </a>
+
+            <a class="quality-btn">
+                دانلود 480p
+            </a>
+
+            <a class="quality-btn">
+                دانلود 720p
+            </a>
+
+            <a class="quality-btn">
+                دانلود 1080p
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="suggestions">
+
+        <h2>پیشنهادهای مشابه</h2>
+
+        <ul
+            id="suggestionsSlider"
+            class="suggestions-slider"
+        ></ul>
+
+    </section>
+
+    <section class="comments">
+
+        <h2>نظرات کاربران</h2>
+
+        <textarea
+            id="commentInput"
+            placeholder="نظر خود را بنویسید..."
+        ></textarea>
+
+        <button id="commentBtn">
+            ثبت نظر
+        </button>
+
+        <div id="commentsList"></div>
+
+    </section>
+
     <div id="footer-container"></div>
 
-    <script src="../js/api.js"></script>
-    <script src="../js/play.js"></script>
-    <script src="../js/components.js"></script> <!-- adds header and footer -->
+    <script src="../Js/api.js"></script>
+    <script src="../Js/MovieLists.js"></script>
+    <script src="../Js/play.js"></script>
+    <script src="../Js/components.js"></script>
 
 </body>
 
