@@ -493,9 +493,20 @@ body{
 
 .genreItem{
     background-color: #6f6c6c94;
-    max-width: 5rem;
-    width: 4rem;
+    width: 5rem;
     text-align: center;
     border: 0.1rem solid #6f6c6c94;
     border-radius: 0.7rem;
+}
+
+.movieData{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 20px;
+}
+
+.dataItem{
+    display: flex;
+    gap: 0.5rem;
 }

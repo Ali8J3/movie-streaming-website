@@ -74,36 +74,36 @@ function hideLoading() {
             `stream.html?imdb=${imdbID}`;
 
         document.title =
-            movie.Title;
+            movie.Title + movie.Year;
 
         document.getElementById(
             "movieTitle"
         ).textContent =
-            movie.Title;
+            movie.Title + " " + movie.Year;
 
         document.getElementById(
             "rating"
         ).textContent =
             `${movie.imdbRating}/10`;
 
-        const genreWrapper = document.getElementsByClassName("genreWrapper");
-
-            movie.genre.forEach(g => {
-                let newGenre = document.createElement("div");
-                newGenre.className = "genreItem";
+        const genreWrapper = document.querySelector(".genreWrapper");
                 
-                console.log("genre: " + g);
-
-                let faGenre;
-                
-                try { faGenre = await translateGenre(g); } 
-                catch { faGenre = movie.Plot; }
-
-                newGenre.innerHTML = faGenre;
-
-                genreWrapper.appendChild(newGenre);
-            });
+        const genres = (movie.Genre || "").split(",").map(g => g.trim());
+        for (const g of genres) {
+            let newGenre = document.createElement("div");
+            newGenre.className = "genreItem";
         
+            let faGenre;
+        
+            try {
+                faGenre = await translateGenre(g);
+            } catch (e) {
+                faGenre = g;
+            }
+        
+            newGenre.textContent = faGenre;
+            genreWrapper.appendChild(newGenre);
+        }
             
         let faPlot;
 
@@ -133,6 +133,26 @@ function hideLoading() {
         await renderSeries(
             movie
         );
+
+        const runtimeEl = document.createElement("p");
+        runtimeEl.textContent = movie.Runtime;
+        document.getElementById("runtime").appendChild(runtimeEl);
+            
+        const releaseEl = document.createElement("p");
+        releaseEl.textContent = movie.Released;
+        document.getElementById("release").appendChild(releaseEl);
+            
+        const countryEl = document.createElement("p");
+        countryEl.textContent = movie.Country;
+        document.getElementById("country").appendChild(countryEl);
+            
+        const languageEl = document.createElement("p");
+        languageEl.textContent = movie.Language;
+        document.getElementById("language").appendChild(languageEl);
+            
+        const ratedEl = document.createElement("p");
+        ratedEl.textContent = movie.Rated;
+        document.getElementById("rated").appendChild(ratedEl);
 
         loadComments();
 
@@ -191,30 +211,22 @@ async function translateText(text) {
     return translated;
 }
 
-async function translateGenre(genre){
-    const key =
-        `genre_fa_${genre}`;
+async function translateGenre(genre) {
+    const key = `genre_fa_${genre}`;
 
-    const cached =
-        localStorage.getItem(key);
+    const cached = localStorage.getItem(key);
+    if (cached) return cached;
 
-    if (cached)
-        return cached;
-
-    const response =
-        await fetch(
-            `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fa&dt=t&q=${encodeURIComponent(text)}`
-        );
+    const response = await fetch(
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fa&dt=t&q=${encodeURIComponent(genre)}`
+    );
 
     const data = await response.json();
 
     const translated =
-        data?.[0]?.map(part => part?.[0]).join("") || text;
+        data?.[0]?.map(part => part?.[0]).join("") || genre;
 
-    localStorage.setItem(
-        key,
-        translated
-    );
+    localStorage.setItem(key, translated);
 
     return translated;
 }
