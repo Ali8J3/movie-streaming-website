@@ -36,6 +36,7 @@ body{
     max-width:1400px;
 
     margin:20px auto;
+    margin-top: 4rem !important;
 
     min-height:500px;
 
@@ -345,6 +346,10 @@ body{
     .stream-btn {
         text-align: center;
     }
+
+    .episodes{
+        justify-content: space-around;
+    }
 }
 
 .series-section{
@@ -406,6 +411,8 @@ body{
     text-decoration:none;
 
     font-weight:600;
+
+    width: 100px;
 }
 /* -------------------------
    Loading Screen
