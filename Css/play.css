@@ -471,3 +471,31 @@ body{
 .hidden {
     display: none !important;
 }
+
+.descItem{
+    display: flex;
+    gap: 1rem;
+}
+
+.genreWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+
+.genreContainer > p{
+    color: #ffffff;
+    font-size: large;
+    font-weight: 500;
+}
+
+.genreItem{
+    background-color: #6f6c6c94;
+    max-width: 5rem;
+    width: 4rem;
+    text-align: center;
+    border: 0.1rem solid #6f6c6c94;
+    border-radius: 0.7rem;
+}

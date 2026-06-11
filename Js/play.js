@@ -86,6 +86,25 @@ function hideLoading() {
         ).textContent =
             `${movie.imdbRating}/10`;
 
+        const genreWrapper = document.getElementsByClassName("genreWrapper");
+
+            movie.genre.forEach(g => {
+                let newGenre = document.createElement("div");
+                newGenre.className = "genreItem";
+                
+                console.log("genre: " + g);
+
+                let faGenre;
+                
+                try { faGenre = await translateGenre(g); } 
+                catch { faGenre = movie.Plot; }
+
+                newGenre.innerHTML = faGenre;
+
+                genreWrapper.appendChild(newGenre);
+            });
+        
+            
         let faPlot;
 
         try {
@@ -147,6 +166,34 @@ async function translateText(text) {
 
     const key =
         `plot_fa_${imdbID}`;
+
+    const cached =
+        localStorage.getItem(key);
+
+    if (cached)
+        return cached;
+
+    const response =
+        await fetch(
+            `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fa&dt=t&q=${encodeURIComponent(text)}`
+        );
+
+    const data = await response.json();
+
+    const translated =
+        data?.[0]?.map(part => part?.[0]).join("") || text;
+
+    localStorage.setItem(
+        key,
+        translated
+    );
+
+    return translated;
+}
+
+async function translateGenre(genre){
+    const key =
+        `genre_fa_${genre}`;
 
     const cached =
         localStorage.getItem(key);
