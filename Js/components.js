@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     requestAnimationFrame(() => {
         initAuth();
+        initSearch();
     });
 
     await loadComponent(
