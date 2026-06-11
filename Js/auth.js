@@ -122,4 +122,65 @@ function rootPath(page) {
 
 }
 
-renderProfileMenu();
+function getRootPath(file) {
+
+    const isInComponents =
+        window.location.pathname
+            .toLowerCase()
+            .includes("/components/");
+
+    return isInComponents
+        ? `../${file}`
+        : file;
+
+}
+
+function fixHeaderLinks() {
+
+    const logo =
+        document.querySelector(".logo");
+
+    if (logo) {
+        logo.setAttribute(
+            "href",
+            getRootPath("index.html")
+        );
+    }
+
+    const homeBTN = 
+    document.querySelector("#homeBTN");
+    
+    if(homeBTN){
+        homeBTN.setAttribute(
+            "href",
+            getRootPath("index.html")
+        );
+    }
+
+    const movieList = 
+    document.querySelector(".movieList");
+    
+    if(movieList){
+        movieList.setAttribute(
+            "href",
+            `${getRootPath("list.html")}?type=movie`
+        );
+    }
+
+    const seriesList = 
+    document.querySelector(".seriesList");
+    
+    if(seriesList){
+        seriesList.setAttribute(
+            "href",
+            `${getRootPath("list.html")}?type=series`
+        );
+    }
+}
+
+function initAuth() {
+
+    renderProfileMenu();
+
+    fixHeaderLinks();
+}

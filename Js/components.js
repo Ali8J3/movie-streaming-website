@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         `${basePath}header.html`
     );
 
+    requestAnimationFrame(() => {
+        initAuth();
+    });
+
     await loadComponent(
         "footer-container",
         `${basePath}footer.html`
