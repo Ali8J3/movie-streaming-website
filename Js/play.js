@@ -148,11 +148,11 @@ async function translateText(text) {
     const key =
         `plot_fa_${imdbID}`;
 
-    // const cached =
-    //     localStorage.getItem(key);
+    const cached =
+        localStorage.getItem(key);
 
-    // if (cached)
-    //     return cached;
+    if (cached)
+        return cached;
 
     const response =
         await fetch(
