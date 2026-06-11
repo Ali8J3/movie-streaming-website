@@ -114,7 +114,8 @@ function rootPath(page) {
 
     const inComponents =
         window.location.pathname
-            .includes("/Components/");
+            .toLowerCase()
+            .includes("/components/");
 
     return inComponents
         ? `../${page}`
@@ -122,16 +123,16 @@ function rootPath(page) {
 
 }
 
-function getRootPath(file) {
+function getRootReverse(page) {
 
     const isInComponents =
         window.location.pathname
             .toLowerCase()
-            .includes("/Components/");
+            .includes("/components/");
 
     return isInComponents
-        ? `../${file}`
-        : file;
+        ? page
+        : `Components/${page}`;
 
 }
 
@@ -143,7 +144,7 @@ function fixHeaderLinks() {
     if (logo) {
         logo.setAttribute(
             "href",
-            getRootPath("index.html")
+            rootPath("index.html")
         );
     }
 
@@ -153,7 +154,7 @@ function fixHeaderLinks() {
     if(homeBTN){
         homeBTN.setAttribute(
             "href",
-            getRootPath("index.html")
+            rootPath("index.html")
         );
     }
 
@@ -163,7 +164,7 @@ function fixHeaderLinks() {
     if(movieList){
         movieList.setAttribute(
             "href",
-            `${getRootPath("list.html")}?type=movie`
+            `${getRootReverse("list.html")}?type=movie`
         );
     }
 
@@ -173,7 +174,7 @@ function fixHeaderLinks() {
     if(seriesList){
         seriesList.setAttribute(
             "href",
-            `${getRootPath("list.html")}?type=series`
+            `${getRootReverse("list.html")}?type=series`
         );
     }
 }
