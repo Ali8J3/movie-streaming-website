@@ -18,68 +18,6 @@ const searchResults =
         "searchResults"
     );
 
-searchBtn?.addEventListener(
-    "click",
-    () => {
-
-        searchModal.classList.add(
-            "show"
-        );
-
-        searchInput.focus();
-
-    }
-);
-
-searchModal?.addEventListener(
-    "click",
-    e => {
-
-        if (
-            e.target === searchModal
-        ) {
-
-            searchModal.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-let searchTimeout;
-
-searchInput?.addEventListener(
-    "input",
-    () => {
-
-        clearTimeout(
-            searchTimeout
-        );
-
-        const query =
-            searchInput.value.trim();
-
-        if (query.length < 2) {
-
-            searchResults.innerHTML =
-                "";
-
-            return;
-        }
-
-        searchTimeout =
-            setTimeout(
-                () =>
-                    searchTitles(
-                        query
-                    ),
-                400
-            );
-
-    }
-);
 
 async function searchTitles(
     query,
@@ -103,42 +41,94 @@ async function searchTitles(
         searchResults.innerHTML =
             "";
 
-        results
-            .slice(0, 10)
-            .forEach(item => {
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-                div.className =
-                    "search-item";
-
-                div.textContent =
-                    item.name;
-
-                div.addEventListener(
-                    "click",
-                    () => {
-
-                        if (
-                            item.imdb_id
-                        ) {
-
-                            location.href =
-                                `${getRootReverse("play.html")}?imdb=${item.imdb_id}`;
-
-                        }
-
+        for (const item of results.slice(0, 10)) {
+        
+            let poster =
+                "https://placehold.co/80x120?text=No+Image";
+        
+            if (item.imdb_id) {
+            
+                try {
+                
+                    const omdb =
+                        await fetchWithCache(
+                        
+                            `https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${item.imdb_id}`,
+                        
+                            `search_poster_${item.imdb_id}`
+                        );
+                    
+                    if (
+                        omdb?.Poster &&
+                        omdb.Poster !== "N/A"
+                    ) {
+                    
+                        poster =
+                            omdb.Poster;
+                    
                     }
+                
+                }
+                catch (error) {
+                
+                    console.error(
+                        "Poster fetch failed:",
+                        error
+                    );
+                
+                }
+            
+            }
+        
+            const div =
+                document.createElement(
+                    "div"
                 );
-
-                searchResults.appendChild(
-                    div
-                );
-
-            });
+            
+            div.className =
+                "search-item";
+            
+            div.innerHTML = `
+                <img
+                    class="search-poster"
+                    src="${poster}"
+                    alt="${item.name}"
+                >
+            
+                <div class="search-info">
+            
+                    <div class="search-title">
+                        ${item.name}
+                    </div>
+            
+                    <div class="search-type">
+                        ${item.type || ""}
+                    </div>
+            
+                </div>
+            `;
+            
+            div.addEventListener(
+                "click",
+                () => {
+                
+                    if (
+                        item.imdb_id
+                    ) {
+                    
+                        location.href =
+                            `${getRootReverse("play.html")}?imdb=${item.imdb_id}`;
+                    
+                    }
+                
+                }
+            );
+        
+            searchResults.appendChild(
+                div
+            );
+        
+        }
 
     }
     catch (error) {
@@ -173,6 +163,22 @@ function initSearch() {
         document.getElementById(
             "searchResults"
         );
+
+    const closeSearchBtn =
+        document.getElementById(
+            "closeSearchBtn"
+        );
+    
+    closeSearchBtn?.addEventListener(
+        "click",
+        () => {
+        
+            searchModal.classList.remove(
+                "show"
+            );
+        
+        }
+    );
 
     if (
         !searchBtn ||
