@@ -127,7 +127,7 @@ function getRootPath(file) {
     const isInComponents =
         window.location.pathname
             .toLowerCase()
-            .includes("/components/");
+            .includes("/Components/");
 
     return isInComponents
         ? `../${file}`
