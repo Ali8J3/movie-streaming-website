@@ -148,22 +148,21 @@ async function translateText(text) {
     const key =
         `plot_fa_${imdbID}`;
 
-    const cached =
-        localStorage.getItem(key);
+    // const cached =
+    //     localStorage.getItem(key);
 
-    if (cached)
-        return cached;
+    // if (cached)
+    //     return cached;
 
     const response =
         await fetch(
-            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|fa`
+            `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fa&dt=t&q=${encodeURIComponent(text)}`
         );
 
-    const data =
-        await response.json();
+    const data = await response.json();
 
     const translated =
-        data?.responseData?.translatedText || text;
+        data?.[0]?.map(part => part?.[0]).join("") || text;
 
     localStorage.setItem(
         key,
