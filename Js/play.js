@@ -61,6 +61,19 @@ function hideLoading() {
         const movie =
             await getMovie();
 
+        const stream_box =
+            document.querySelector(
+                ".stream-box"
+            );
+        
+        if (
+            movie.Type == "series"
+        ) {
+            stream_box?.classList.add(
+                "hidden"
+            );
+        }
+
         console.log(movie);
 
         document.getElementById(
