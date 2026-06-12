@@ -108,37 +108,6 @@ input::placeholder {
   font-weight:bold;
 }
 
-/* SEARCH */
-.search-box{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  padding:20px;
-  display:none;
-  z-index:200;
-}
-
-.search-box input{
-  width:100%;
-  padding:12px;
-  font-size:16px;
-  border:none;
-  border-radius:8px;
-}
-
-.search-results{
-  margin-top:15px;
-  max-height:300px;
-  overflow:auto;
-}
-
-.search-item{
-  padding:10px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
-}
-.search-item:hover{background:#e50914}
-
 /* Featured */
 .featured-poster::before{
     content:"";

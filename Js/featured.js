@@ -1,129 +1,189 @@
-// Fetch Watchmode list
-async function getFeaturedList() {
-
-    const data = await fetchWithCache(
-        `https://api.watchmode.com/v1/list-titles/?apiKey=${WATCHMODE_API_KEY_3}&types=movie&limit=4`,
-        "featured_list"
-    );
-
-    console.log(data);
-
-    return data.titles || [];
-}
-
-// Fetch OMDb Poster
-async function getPoster(imdbID) {
-
-    if (!imdbID) return "https://placehold.co/300x450?text=No+Image";
-
-    const data = await fetchWithCache(
-        `https://www.omdbapi.com/?apikey=${OMDB_KEY}&i=${imdbID}`,
-        `omdb_${imdbID}`
-    );
-
-    return data?.Poster && data.Poster !== "N/A"
-        ? data.Poster
-        : "https://placehold.co/300x450?text=No+Image";
-}
-
-// DOM
 const featuredPoster =
-    document.getElementById("featuredPoster");
+    document.getElementById(
+        "featuredPoster"
+    );
 
 const featuredTitle =
-    document.getElementById("featuredTitle");
-
-const featuredSlider =
-    document.getElementById("featuredSlider");
+    document.getElementById(
+        "featuredTitle"
+    );
 
 const featuredPlayBtn =
-    document.getElementById("featuredPlayBtn");
+    document.getElementById(
+        "featuredPlayBtn"
+    );
 
-let currentMovie = null;
+const featuredSlider =
+    document.getElementById(
+        "featuredSlider"
+    );
 
 let featuredMovies = [];
 
-// Render Main Featured
+let currentMovie = null;
+
+async function getFeaturedList() {
+
+    const response =
+        await fetch(
+            "../featuredDB.json"
+        );
+
+    const data =
+        await response.json();
+
+    return data.items || [];
+
+}
+
+function getFeaturedImage(movie) {
+
+    return window.innerWidth <= 768
+        ? movie.poster
+        : movie.hero;
+
+}
+
 function renderFeatured(movie) {
 
-    currentMovie = movie;
+    currentMovie =
+        movie;
 
-    featuredPoster.style.backgroundImage =
-    `url('${movie.poster}')`;
+    if (!movie)
+        return;
 
-    featuredTitle.textContent =
-        movie.title;
+    const image =
+        getFeaturedImage(
+            movie
+        );
 
-    document.querySelectorAll(".featured-item")
-        .forEach(item => {
+    if (featuredPoster.tagName === "IMG") {
 
-            item.classList.remove("active");
+        featuredPoster.src =
+            image;
 
-            if (item.dataset.id == movie.id) {
-                item.classList.add("active");
-            }
-        });
+    }
+    else {
+
+        featuredPoster.style.backgroundImage =
+            `url('${image}')`;
+
+    }
+
+    if (featuredTitle) {
+
+        featuredTitle.textContent =
+            movie.title;
+
+    }
+
 }
 
-// Render Slider
 function renderFeaturedSlider() {
 
-    featuredSlider.innerHTML = "";
+    if (!featuredSlider)
+        return;
 
-    featuredMovies.forEach(movie => {
+    featuredSlider.innerHTML =
+        "";
 
-        const item = document.createElement("div");
+    featuredMovies.forEach(
+        movie => {
 
-        item.className = "featured-item";
-        item.dataset.id = movie.id;
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        item.style.backgroundImage =
-            `url('${movie.poster}')`;
+            item.className =
+                "featured-item";
 
-        item.addEventListener("click", () => {
-            renderFeatured(movie);
-        });
+            item.innerHTML = `
+                <img
+                    src="${movie.poster}"
+                    alt="${movie.title}"
+                >
+            `;
 
-        featuredSlider.appendChild(item);
-    });
-}
+            item.addEventListener(
+                "click",
+                () => {
 
-// Init (IMPORTANT)
-(async function initFeatured() {
+                    renderFeatured(
+                        movie
+                    );
 
-    const list = await getFeaturedList();
+                }
+            );
 
-    // take only featured candidates
-    const picked = list.slice(0, 4);
+            featuredSlider.appendChild(
+                item
+            );
 
-    // enrich with OMDb posters
-    featuredMovies = await Promise.all(
-        picked.map(async (m) => {
-
-            const poster = await getPoster(m.imdb_id);
-
-            return {
-                id: m.id,
-                imdb_id: m.imdb_id,
-                title: m.title,
-                poster
-            };
-        })
+        }
     );
 
-    renderFeaturedSlider();
+}
 
-    if (featuredMovies.length > 0) {
-        renderFeatured(featuredMovies[0]);
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            currentMovie
+        ) {
+
+            renderFeatured(
+                currentMovie
+            );
+
+        }
+
+    }
+);
+
+featuredPlayBtn?.addEventListener(
+    "click",
+    () => {
+
+        if (
+            !currentMovie
+        )
+            return;
+
+        location.href =
+            `Components/play.html?imdb=${currentMovie.imdb_id}`;
+
+    }
+);
+
+(async function initFeatured() {
+
+    try {
+
+        featuredMovies =
+            await getFeaturedList();
+
+        renderFeaturedSlider();
+
+        if (
+            featuredMovies.length > 0
+        ) {
+
+            renderFeatured(
+                featuredMovies[0]
+            );
+
+        }
+
+    }
+    catch(error) {
+
+        console.error(
+            "Featured section failed:",
+            error
+        );
+
     }
 
 })();
-
-// Play Button 
-featuredPlayBtn.addEventListener("click", () => {
-
-    if (!currentMovie) return;
-
-    location.href =
-        `components/play.html?imdb=${currentMovie.imdb_id}`;
-});

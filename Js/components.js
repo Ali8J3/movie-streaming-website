@@ -27,14 +27,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         `${basePath}header.html`
     );
 
-    requestAnimationFrame(() => {
-        initAuth();
-        initSearch();
-    });
-
     await loadComponent(
         "footer-container",
         `${basePath}footer.html`
     );
+
+    initAuth();
+    initSearch();
 
 });
