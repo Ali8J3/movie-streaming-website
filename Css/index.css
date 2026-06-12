@@ -182,12 +182,21 @@ input::placeholder {
     transition:.25s;
 }
 
-.featured-content{
+#fuck > img{
+    width: 100%;
+    height: 100%;
+}
+
+#featured-content{
     position:absolute;
     bottom:25px;
     /* right:25px; */
     left:25px;
     z-index:3;
+}
+
+#featured-content > .splide__arrows {
+    display: none;
 }
 
 #featuredTitle{
@@ -345,4 +354,261 @@ input::placeholder {
         padding:0 15px 10px;
     }
 
+}
+
+/* Add these styles to your featured.css */
+
+#featuredSlider {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#featuredSlider .splide__slide {
+    cursor: pointer;
+    transition: transform 0.25s ease, border 0.25s ease;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+#featuredSlider .splide__slide:hover {
+    transform: translateY(-6px);
+}
+
+#featuredSlider .splide__slide.active {
+    border: 3px solid white;
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+#featuredSlider .splide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Style Splide arrows */
+.splide__arrow {
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0.7;
+    width: 40px;
+    height: 40px;
+}
+
+.splide__arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+}
+
+.splide__arrow svg {
+    fill: white;
+}
+
+/* Make sure featured content is positioned correctly */
+#featured-content {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    z-index: 3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #featured-content {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+    }
+    
+    .splide__arrow {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Fix for featured poster background */
+.featured-poster {
+    width: 100%;
+    height: 75vh;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#featuredTitle {
+    text-align: left;
+    margin: 8rem 0 20px 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 2;
+}
+
+/* Add these styles to your featured.css - replace the existing .slider-card styles */
+
+/* Default slider-card styles for movie sections */
+.slider-card {
+    width: 200px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .25s;
+}
+
+/* Featured slider specific card sizes */
+#featuredSlider .slider-card {
+    width: 130px;  /* Smaller width for featured slider */
+    height: 190px; /* Fixed height for consistency */
+}
+
+/* Make images fill the cards properly */
+#featuredSlider .slider-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* Responsive sizes for featured slider */
+@media (max-width: 1200px) {
+    #featuredSlider .slider-card {
+        width: 120px;
+        height: 175px;
+    }
+}
+
+@media (max-width: 992px) {
+    #featuredSlider .slider-card {
+        width: 110px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    #featuredSlider .slider-card {
+        width: 100px;
+        height: 145px;
+    }
+}
+
+@media (max-width: 480px) {
+    #featuredSlider .slider-card {
+        width: 85px;
+        height: 125px;
+    }
+}
+
+/* Keep original slider-card styles for movie sections */
+.content-row .slider-card {
+    width: 200px;
+}
+
+@media (max-width: 768px) {
+    .content-row .slider-card {
+        width: 140px;
+    }
+}
+
+/* Featured slider specific styles */
+.featured-slide {
+    cursor: pointer;
+    transition: transform 0.25s ease, border 0.25s ease;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    width: 130px;  /* Fixed width */
+    flex-shrink: 0;
+}
+
+.featured-card {
+    width: 100%;
+    height: 190px;  /* Fixed height */
+    display: block;
+}
+
+.featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
+
+.featured-slide:hover {
+    transform: translateY(-6px);
+}
+
+.featured-slide.active {
+    border: 3px solid white;
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.featured-slide.active .featured-card img {
+    border-radius: 11px;  /* Slightly smaller radius to account for border */
+}
+
+/* Responsive sizes for featured slides */
+@media (max-width: 1200px) {
+    .featured-slide {
+        width: 115px;
+    }
+    .featured-card {
+        height: 230px;
+    }
+}
+
+@media (max-width: 992px) {
+    .featured-slide {
+        width: 105px;
+    }
+    .featured-card {
+        height: 155px;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-slide {
+        width: 95px;
+    }
+    .featured-card {
+        height: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .featured-slide {
+        width: 85px;
+    }
+    .featured-card {
+        height: 125px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-slide {
+        width: 75px;
+    }
+    .featured-card {
+        height: 250px;
+    }
+}
+
+/* Remove any conflicting styles */
+#featuredSlider {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    direction: ltr;
+}
+
+#featuredSlider .splide__slide {
+    max-width: 165px;
+    width: auto;
 }

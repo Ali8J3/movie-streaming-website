@@ -19,8 +19,8 @@ const featuredSlider =
     );
 
 let featuredMovies = [];
-
 let currentMovie = null;
+let featuredSplide = null; // Add this to store Splide instance
 
 async function getFeaturedList() {
 
@@ -92,17 +92,20 @@ function renderFeaturedSlider() {
 
             const item =
                 document.createElement(
-                    "div"
+                    "li"
                 );
 
+            // Add both classes - splide__slide and a specific featured-slide class
             item.className =
-                "featured-item";
+                "splide__slide featured-slide";
 
             item.innerHTML = `
-                <img
-                    src="${movie.poster}"
-                    alt="${movie.title}"
-                >
+                <div class="featured-card">
+                    <img 
+                        src="${movie.poster}" 
+                        alt="${movie.title}"
+                    >
+                </div>
             `;
 
             item.addEventListener(
@@ -113,6 +116,11 @@ function renderFeaturedSlider() {
                         movie
                     );
 
+                    // Add active class styling
+                    document.querySelectorAll('#featuredSlider .splide__slide').forEach(slide => {
+                        slide.classList.remove('active');
+                    });
+                    item.classList.add('active');
                 }
             );
 
@@ -122,6 +130,48 @@ function renderFeaturedSlider() {
 
         }
     );
+
+    // Destroy existing Splide instance if it exists
+    if (featuredSplide) {
+        featuredSplide.destroy();
+    }
+
+    // Initialize Splide for featured slider
+    const featuredSplideElement = document.querySelector('#featured-content');
+    if (featuredSplideElement && featuredMovies.length > 0) {
+        featuredSplide = new Splide(featuredSplideElement, {
+            type: 'slide',
+            perPage: 5,
+            perMove: 1,
+            gap: '0.8rem',  // Reduced gap for smaller cards
+            pagination: false,
+            arrows: true,
+            breakpoints: {
+                1200: {
+                    perPage: 5,
+                    gap: '0.7rem',
+                },
+                992: {
+                    perPage: 4,
+                    gap: '0.6rem',
+                },
+                768: {
+                    perPage: 3,
+                    gap: '0.5rem',
+                },
+                576: {
+                    perPage: 2,
+                    gap: '0.5rem',
+                },
+                480: {
+                    perPage: 2,
+                    gap: '0.4rem',
+                }
+            }
+        });
+        
+        featuredSplide.mount();
+    }
 
 }
 
@@ -137,6 +187,11 @@ window.addEventListener(
                 currentMovie
             );
 
+        }
+
+        // Refresh Splide on resize
+        if (featuredSplide) {
+            featuredSplide.refresh();
         }
 
     }
@@ -173,6 +228,14 @@ featuredPlayBtn?.addEventListener(
             renderFeatured(
                 featuredMovies[0]
             );
+
+            // Add active class to first slide
+            setTimeout(() => {
+                const firstSlide = document.querySelector('#featuredSlider .splide__slide');
+                if (firstSlide) {
+                    firstSlide.classList.add('active');
+                }
+            }, 100);
 
         }
 
