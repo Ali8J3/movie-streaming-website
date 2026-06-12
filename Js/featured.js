@@ -26,7 +26,7 @@ async function getFeaturedList() {
 
     const response =
         await fetch(
-            "../featuredDB.json"
+            "featuredDB.json"
         );
 
     const data =
