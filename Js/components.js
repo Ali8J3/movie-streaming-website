@@ -18,9 +18,9 @@ async function loadComponent(id, file) {
 document.addEventListener("DOMContentLoaded", async () => {
 
     const basePath =
-        window.location.pathname.includes("/components/")
-            ? "../components/"
-            : "components/";
+        window.location.pathname.includes("/Components/")
+            ? "../Components/"
+            : "Components/";
 
     await loadComponent(
         "header-container",

@@ -32,7 +32,7 @@ async function renderSlider(containerId, movies) {
         card.onclick = () => {
 
             location.href =
-                `components/play.html?imdb=${movie.imdb_id}`;
+                `Components/play.html?imdb=${movie.imdb_id}`;
 
         };
 
