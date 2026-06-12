@@ -146,6 +146,10 @@ body{
     border-radius:12px;
 }
 
+.cast-section, .actions-container{
+    padding: 2rem;
+}
+
 .actions-container{
 
     max-width:1200px;
@@ -504,9 +508,15 @@ body{
     flex-wrap: wrap;
     gap: 2rem;
     padding: 20px;
+    margin-right: 2rem;
 }
 
 .dataItem{
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+}
+
+.dataItem svg{
+    color: grey;
 }

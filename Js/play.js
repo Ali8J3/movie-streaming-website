@@ -154,6 +154,26 @@ function hideLoading() {
         ratedEl.textContent = movie.Rated;
         document.getElementById("rated").appendChild(ratedEl);
 
+        const castContainer = document.getElementById("castContainer");
+        const Actors = (movie.Actors || "").split(",").map(a => a.trim());
+        
+        for (const a of Actors) {
+            let newActor = document.createElement("p");
+            newActor.className = "cast-item";
+            newActor.innerHTML = a;
+
+            castContainer.appendChild(newActor);
+        }
+
+        const directorContainer = document.getElementById("directorContainer");
+        const Directors = (movie.Director || "").split(",").map(a => a.trim());
+
+        let newDirector = document.createElement("p");
+        newDirector.className = "director-item";
+        newDirector.innerHTML = movie.Director  ;
+
+        directorContainer.appendChild(newDirector);
+            
         loadComments();
 
     }
