@@ -58,7 +58,7 @@ async function getSeries() {
 // >>Execute
 (async () => {
 
-    const [movies, series, anime] =
+    const [movies, series] =
         await Promise.all([
             getMovies(),
             getSeries()
