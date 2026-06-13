@@ -19,27 +19,7 @@ Splide.js (برای اسلایدرها)
 Watchmode API (برای فیلم و سریال)
 OMDb API
 localStorage (برای کش داده‌ها)
-📁 ساختار پروژه
-movie-streaming-website/
-│
-├── index.html
-├── Css/
-│   ├── index.css
-│   ├── header.css
-│   └── footer.css
-│
-├── Js/
-│   ├── api.js
-│   ├── index.js
-│   ├── MovieLists.js
-│   ├── featured.js
-│   ├── search.js
-│   ├── auth.js
-│   └── components.js
-│
-└── Components/
-    ├── play.html
-    └── list.html
+
 ⚙️ نحوه کار پروژه
 📡 دریافت داده‌ها از API
 
