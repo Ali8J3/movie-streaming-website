@@ -25,11 +25,11 @@ function buildStreamUrl() {
         episode
     ) {
 
-        return `https://embedmaster.link/tv/${imdb}/${season}/${episode}`;
+        return `https://multiembed.mov/?video_id=${imdb}&s=${season}&e=${episode}`;
 
     }
 
-    return `https://embedmaster.link/movie/${imdb}`;
+    return `https://multiembed.mov/?video_id=${imdb}`;
 
 }
 
